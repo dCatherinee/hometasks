@@ -1,10 +1,7 @@
-function debounce(callback, delay, e) {
-    console.log(e);
+export function debounce(callback, delay) {
     let timeout;
-    return function () {
+    return function (...args) {
         clearTimeout(timeout);
-        timeout = setTimeout(callback, delay, e);
+        timeout = setTimeout(callback, delay, ...args);
     }
 }
-
-export { debounce };

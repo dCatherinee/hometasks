@@ -1,12 +1,13 @@
 import { debounce } from './debounce.js';
 
 const inputSearch = document.querySelector('.search');
-const debounceHandle = debounce(handelInput, 250, inputSearch);
+const debounceHandle = debounce(handleInput, 250);
 
 inputSearch.addEventListener('input', debounceHandle);
 
-function handelInput(e) {
-    let value = e.value.trim().toLowerCase();
+function handleInput(e) {
+    let { value } = e.target;
+    value = value.trim().toLowerCase();
     let productItems = document.querySelectorAll('.product');
 
     if (value != '') {
