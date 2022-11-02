@@ -1,12 +1,20 @@
-document.querySelector('.search').oninput = function () {
-    let val = this.value.trim().toLowerCase();
+import { debounce } from './debounce.js';
+
+const inputSearch = document.querySelector('.search');
+const debounceHandle = debounce(handleInput, 250);
+
+inputSearch.addEventListener('input', debounceHandle);
+
+function handleInput(e) {
+    let { value } = e.target;
+    value = value.trim().toLowerCase();
     let productItems = document.querySelectorAll('.product');
 
-    if (val != '') {
+    if (value != '') {
         productItems.forEach(function (el) {
             const itemName = el.querySelector('.product__name').innerText.toLowerCase();
 
-            if (itemName.includes(val)) {
+            if (itemName.includes(value)) {
                 el.style.display = '';
             } else {
                 el.style.display = 'none';

@@ -34,8 +34,8 @@ function showProduct(data) {
                 </div>
                 <button class="card__btn">Add to cart</button>
                 <div class="product__favorite ${data.content.like ? 'fav-active' : ''}">
-                    <img src="./assets/img/favorite_border.svg" alt="Любимый">
-                    <img src="./assets/img/favorite.svg" alt="Любимый">
+                    <img src="./assets/img/favorite_border.png" alt="Любимый">
+                    <img src="./assets/img/favorite.png" alt="Любимый">
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import { getProduct } from "./api.js";
+import './search.js';
 
 const URL_PRODUCTS = 'http://localhost:3006/item';
 
@@ -19,8 +20,8 @@ function showCatalog(data) {
         <p class="product__name">${product.name}</p>
         <p class="product__price">$${product.price.value}</p>
         <div class="product__favorite ${product.like ? 'fav-active' : ''}">
-            <img src="./assets/img/favorite_border.svg" alt="Любимый">
-            <img src="./assets/img/favorite.svg" alt="Любимый">
+            <img src="./assets/img/favorite_border.png" alt="Любимый">
+            <img src="./assets/img/favorite.png" alt="Любимый">
         </div>
         `;
 
