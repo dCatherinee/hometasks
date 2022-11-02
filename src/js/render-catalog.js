@@ -1,13 +1,4 @@
-import { getProduct } from "./api.js";
-import './search.js';
-
-const URL_PRODUCTS = 'http://localhost:3006/item';
-
-getProduct(URL_PRODUCTS)
-    .then(data => showCatalog(data))
-    .catch(err => console.log(err));
-
-function showCatalog(data) {
+export function showCatalog(data) {
     const catalog = document.querySelector('.catalog-wrapper');
 
     data.content.forEach((product) => {
@@ -15,13 +6,13 @@ function showCatalog(data) {
         productEl.classList.add('product');
         productEl.innerHTML = `
         <div class="product__img">
-            <img src="./assets/img/product-s.png" width="59px" height="79px" alt="${product.picture.alt}">
+            <img src="./img/product-s.png" width="59px" height="79px" alt="${product.picture.alt}">
         </div>
         <p class="product__name">${product.name}</p>
         <p class="product__price">$${product.price.value}</p>
         <div class="product__favorite ${product.like ? 'fav-active' : ''}">
-            <img src="./assets/img/favorite_border.png" alt="Любимый">
-            <img src="./assets/img/favorite.png" alt="Любимый">
+            <img src="./img/favorite_border.png" alt="Любимый">
+            <img src="./img/favorite.png" alt="Любимый">
         </div>
         `;
 

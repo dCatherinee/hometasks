@@ -1,10 +1,11 @@
+import axios from 'axios';
+
 async function getProduct(url) {
     try {
-        const resp = await fetch(url);
-        const respData = await resp.json();
-        return respData;
+        const resp = await axios.get(url);
+        return resp.data;
     } catch (e) {
-        console.error(e);
+        alert(e);
     }
 };
 
