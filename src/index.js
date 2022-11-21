@@ -1,15 +1,10 @@
-import { getProduct } from "./js/api.js";
-import { showCatalog } from "./js/render-catalog.js";
-import './js/search.js';
-import './catalog.html';
-import './css/base.css';
-import './css/catalog.css';
-import './img/favorite.png';
-import './img/favorite_border.png';
-import './img/product-s.png';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 
-const URL_PRODUCTS = 'http://localhost:3006/item';
-
-getProduct(URL_PRODUCTS)
-    .then(data => showCatalog(data))
-    .catch(err => console.log(err));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
