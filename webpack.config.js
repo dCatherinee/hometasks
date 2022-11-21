@@ -1,20 +1,23 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const path = require('path');
 
 module.exports = {
     entry: {
-        main: './src/js/render-catalog.js'
+        main: './src/index.js'
     },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist'
+        publicPath: ''
     },
     devServer: {
-        overlay: true
+        static: {
+            directory: path.resolve(__dirname, "dist")
+        },
+        compress: true,
+        port: 8080
     },
     module: {
         rules: [
@@ -24,15 +27,21 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
+                test: /\.html$/,
+                use: 'html-loader'
+            },
+            {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
             },
             {
-                test: /\.(?:|gif|png|jpg|jpeg|svg)$/i,
-                loader: "file-loader",
-                options: {
-                    name: 'img/[name].[ext]'
-                }
+                test: /\.(?:|gif|png|jpg|jpeg|svg)$/,
+                use: [{
+                    loader: "file-loader",
+                    options: {
+                        name: "./img/[name].[ext]"
+                    }
+                }]
             },
         ]
     },
@@ -43,7 +52,6 @@ module.exports = {
         new HTMLWebpackPlugin({
             template: './src/catalog.html',
             filename: 'index.html'
-        }),
-        new CleanWebpackPlugin()
+        })
     ],
-}
+};
