@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { getItems } from '../../api/index.js';
 import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 import ProductImg from '../../img/product-m.png';
 import Plus from '../../img/add.svg';
@@ -24,12 +25,13 @@ import {
 const ProductInfo = () => {
     const [inputValue, setInputValue] = useState(1);
     const [info, setInfo] = useState();
+    const {id} = useParams();
 
     useEffect(() => {
-        axios.get('http://localhost:3006/item/:itemId').then(resp => {
+        getItems(`/${id}`).then(resp => {
             setInfo(resp.data.content);
-        });
-    }, []);
+        })
+    }, [id]);
 
     const handleInputMinus = () => {
         if ((inputValue - 1) < 0) {
@@ -52,33 +54,31 @@ const ProductInfo = () => {
     }
 
     return (
-        <>
-            <InfoWrapper>
-                <InfoImage>
-                    <ProductImage src={ProductImg} alt={info.picture.alt} />
-                </InfoImage>
-                <InfoContent>
-                    <InfoTitle>{info.name}</InfoTitle>
-                    <InfoText>{info.info}</InfoText>
-                    <InfoSubtitle>Details</InfoSubtitle>
-                    <InfoText>{info.details}</InfoText>
-                    <InfoOption>
-                        <InfoPrice>${info.price.value}</InfoPrice>
-                        <InfoCount>
-                            <CountButton onClick={handleInputMinus}>
-                                <CountBtnImage src={Minus} />
-                            </CountButton>
-                            <CountNumber value={inputValue} />
-                            <CountButton onClick={handleInputPlus}>
-                                <CountBtnImage src={Plus} />
-                            </CountButton>
-                        </InfoCount>
-                        <InfoButton>Add to cart</InfoButton>
-                        <FavoriteIcon right={0} top={9} active={info.like} />
-                    </InfoOption>
-                </InfoContent>
-            </InfoWrapper>
-        </>
+        <InfoWrapper>
+            <InfoImage>
+                <ProductImage src={ProductImg} alt={info.picture.alt} />
+            </InfoImage>
+            <InfoContent>
+                <InfoTitle>{info.name}</InfoTitle>
+                <InfoText>{info.info}</InfoText>
+                <InfoSubtitle>Details</InfoSubtitle>
+                <InfoText>{info.details}</InfoText>
+                <InfoOption>
+                    <InfoPrice>${info.price.value}</InfoPrice>
+                    <InfoCount>
+                        <CountButton onClick={handleInputMinus}>
+                            <CountBtnImage src={Minus} />
+                        </CountButton>
+                        <CountNumber value={inputValue} />
+                        <CountButton onClick={handleInputPlus}>
+                            <CountBtnImage src={Plus} />
+                        </CountButton>
+                    </InfoCount>
+                    <InfoButton>Add to cart</InfoButton>
+                    <FavoriteIcon right={0} top={9} active={info.like} />
+                </InfoOption>
+            </InfoContent>
+        </InfoWrapper>
     )
 };
 

@@ -12,20 +12,18 @@ const Header = () => {
     };
 
     return (
-        <>
-            <Container>
-                <HeaderWrapper>
-                    <HeaderSearch>
-                        <Search type="search" placeholder="Search products" onFocus={handleFocus} onBlur={handleFocus} />
-                        <SearchIcon focus={focus} />
-                    </HeaderSearch>
-                    <HeaderNav>
-                        <NavIcon img={shoppingIcon} />
-                        <NavIcon img={accountIcon} />
-                    </HeaderNav>
-                </HeaderWrapper>
-            </Container>
-        </>
+        <Container>
+            <HeaderWrapper>
+                <HeaderSearch>
+                    <Search type="search" placeholder="Search products" onFocus={handleFocus} onBlur={handleFocus} />
+                    <SearchIcon focus={focus} />
+                </HeaderSearch>
+                <HeaderNav>
+                    <NavIcon img={shoppingIcon} />
+                    <NavIcon img={accountIcon} />
+                </HeaderNav>
+            </HeaderWrapper>
+        </Container>
     )
 };
 

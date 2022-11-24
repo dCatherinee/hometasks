@@ -7,16 +7,14 @@ const ProductCard = (props) => {
     const product = props.product;
 
     return (
-        <>
-            <CardWrapper to='/info-product'>
-                <ImageWrapper>
-                    <CardImage src={productImg} alt={product.picture.alt} />
-                </ImageWrapper>
-                <CardName>{product.name}</CardName>
-                <CardPrice>{product.price.value} $</CardPrice>
-                <FavoriteIcon right={8} top={8} active={product.like} />
-            </CardWrapper>
-        </>
+        <CardWrapper to={`/info-product/${product.id}`}>
+            <ImageWrapper>
+                <CardImage src={productImg} alt={product.picture.alt} />
+            </ImageWrapper>
+            <CardName>{product.name}</CardName>
+            <CardPrice>{product.price.value} $</CardPrice>
+            <FavoriteIcon right={8} top={8} active={product.like} />
+        </CardWrapper>
     )
 }
 
