@@ -11,11 +11,9 @@ const FavoriteIcon = (props) => {
     };
 
     return (
-        <>
-            <FavWrapper onClick={handleClick} right={props.right} top={props.top}>
-                <FavImage src={favorite ? favIconActive : favIcon} />
-            </FavWrapper>
-        </>
+        <FavWrapper onClick={handleClick} right={props.right} top={props.top}>
+            <FavImage src={favorite ? favIconActive : favIcon} />
+        </FavWrapper>
     )
 }
 
